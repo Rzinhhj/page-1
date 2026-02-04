@@ -1,0 +1,754 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+
+/* ================= RESET GERAL ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Garante que padding não aumente a largura */
+}
+
+body, html {
+    height: 100%;
+}
+
+/* ================= HEADER (Seu Estilo Original) ================= */
+header {
+    background-color: #00904C;
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+    background: linear-gradient(135deg, #00904C, rgba(0, 144, 76, 0.85));
+    box-shadow: 0 8px 20px rgba(0, 144, 76, 0.3);
+    border-bottom: 3px solid rgba(0, 144, 76, 0.6);
+    position: relative;
+    overflow: hidden;
+    z-index: 100; /* Garante que o menu fique acima do slider */
+}
+
+.header::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    transform: rotate(25deg);
+    pointer-events: none;
+}
+
+.logo {
+    width: 85px;
+    height: 88px;
+}
+
+.redes-sociais-imagens {
+    width: 42px;
+    height: 42px;
+    margin-right: 5px;
+}
+
+.redes-sociais-imagens a {
+    color: white;
+    font-size: 22px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.redes-sociais-imagens a:hover {
+    transform: translateY(-3px);
+}
+
+#redes-sociais-header {
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+    width: 150px;
+}
+
+.textos-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.textos-da-header {
+    margin: 0px 15px;
+    font-family: "Red Hat Display", sans-serif;
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.textos-da-header a {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    font-weight: bold;
+    padding: 8px 10px;
+    border-radius: 6px;
+}
+
+.textos-da-header a:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logo-agrobeloni-header {
+    margin-left: 60px;
+    display: flex;
+    align-items: center;
+}
+
+/* ================= NOVO: HERO SLIDER (Carrossel) ================= */
+
+.hero-slider {
+    position: relative;
+    width: 100%;
+    /* Altura total da tela MENOS a altura do header (100px) */
+    height: calc(100vh - 100px); 
+    overflow: hidden;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+/* Overlay escuro opcional para destacar os logos brancos */
+.swiper-slide::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.2); /* Escurece levemente a imagem */
+}
+
+/* Estilização da Paginação (Bolinhas) */
+.swiper-pagination-bullet {
+    background: white !important;
+    opacity: 0.7;
+}
+.swiper-pagination-bullet-active {
+    background: #00904C !important; /* Cor verde da marca */
+    opacity: 1;
+}
+
+/* LOGOS FLUTUANTES (Rota do Café) */
+.slider-footer-logos {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    z-index: 10; /* Garante que fique acima da imagem */
+    pointer-events: none; /* Permite clicar através dos logos se necessário */
+}
+
+.slider-footer-logos img {
+    height: 250px; /* Ajuste o tamanho dos selos conforme necessário */
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6)); /* Sombra para leitura em fundos claros */
+    opacity: 0.9;
+}
+/* ================= SEÇÃO NOSSA HISTÓRIA (Refinada) ================= */
+
+.historia-section {
+    display: flex;
+    width: 100%;
+    /* Removemos altura mínima fixa para o conteúdo ditar o tamanho, 
+       mas garantimos que seja pelo menos o tamanho da tela */
+    min-height: 100vh; 
+    background-color: #FDFBF7; /* Cor creme do fundo */
+    font-family: "Red Hat Display", sans-serif;
+}
+
+/* --- Coluna da Imagem (Esquerda) --- */
+.historia-img {
+    width: 45%; /* Largura da imagem */
+    flex-shrink: 0; /* Garante que a imagem não encolha */
+    position: relative;
+}
+
+.historia-img img {
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+    margin: auto;
+    object-fit: cover; /* A imagem preenche tudo sem distorcer */
+    display: block;
+}
+
+/* --- Coluna de Conteúdo (Direita) --- */
+.historia-conteudo {
+    flex: 1; /* Ocupa o restante do espaço */
+    /* AQUI ESTÁ O SEGREDO DO ESPAÇAMENTO: */
+    padding: 80px 100px; /* 80px em cima/baixo, 100px nas laterais */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza verticalmente se sobrar espaço */
+}
+
+/* Título "Cultivando valores" */
+.titulo-destaque h3 {
+   font-family: 'Sansation', sans-serif;
+    color: #7B2800; /* Cor ferrugem */
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 8px; /* Espaço até a linha verde */
+}
+
+/* Linha Verde */
+.linha-verde {
+    width: 100%;
+    height: 2px;
+    background-color: #00904C;
+    margin-bottom: 35px; /* Espaço da linha até "Nossa história" */
+}
+
+/* Subtítulo "Nossa história" */
+.historia-conteudo h2 {
+   font-family: 'Sansation', sans-serif;
+    font-size: 32px;
+    color: #000;
+    font-weight: 800;
+    margin-bottom: 30px; /* Espaço até o primeiro parágrafo */
+}
+
+/* Parágrafos */
+.texto-corpo p {
+    color: #666;
+    font-size: 18px; /* Fonte levemente menor para elegância */
+    line-height: 1.8; /* Altura da linha maior para leitura confortável */
+    margin-bottom: 25px; /* Espaço entre parágrafos */
+    text-align: justify; /* Texto justificado (alinhado nas duas pontas) */
+}
+
+/* --- Rodapé da Seção (+50 anos e Logos) --- */
+.historia-footer {
+    display: flex;
+    align-items: center;
+    margin-top: 50px; /* Espaço grande entre o texto e os logos */
+    gap: 30px; /* Distância entre o "+50" e a linha vertical */
+}
+
+/* Bloco "+50 anos" */
+.anos-historia {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.numero-grande {
+    font-size: 28px; /* Número bem grande */
+    font-weight: 400; /* Fonte mais fina, elegante */
+    color: #555;
+    line-height: 1;
+}
+
+.texto-anos {
+    font-size: 16px;
+    line-height: 1.2;
+    color: #666;
+}
+
+/* Linha divisória vertical */
+.divisor-vertical {
+    width: 1px;
+    height: 60px; /* Altura da linha divisória */
+    background-color: #BBB;
+}
+
+/* Logos */
+.selos-certificacao {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    margin-left: 10px; /* Um pouco mais de ar à esquerda dos logos */
+}
+
+.selos-certificacao img {
+    height: 120px; /* Tamanho dos selos */
+    width: auto;
+    filter: grayscale(100%); 
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.selos-certificacao img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* --- Responsividade (Ajuste para Celulares/Tablets) --- */
+@media (max-width: 1024px) {
+    .historia-conteudo {
+        padding: 50px; /* Reduz espaçamento em telas médias */
+    }
+}
+
+@media (max-width: 768px) {
+    .historia-section {
+        flex-direction: column;
+    }
+    
+    .historia-img {
+        width: 100%;
+        height: 350px; /* Altura fixa da imagem no mobile */
+    }
+
+    .historia-conteudo {
+        padding: 40px 25px; /* Espaçamento menor no celular */
+    }
+    
+    .historia-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    
+    .divisor-vertical {
+        display: none; /* Esconde a linha no mobile */
+    }
+    
+    .selos-certificacao {
+        margin-left: 0;
+    }
+}
+/* ================= SEÇÃO MISSÃO / VISÃO / VALORES ================= */
+
+.mvv-section {
+    background-color: #4D4D4D; /* Fundo Cinza Escuro */
+    padding: 80px 20px; /* Espaçamento interno (Cima/Baixo, Laterais) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mvv-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Espaço entre os cartões */
+    flex-wrap: wrap; /* Permite quebrar linha no celular */
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Estilo dos Cartões */
+.mvv-card {
+    background-color: #E6E6E6; /* Cinza claro do cartão */
+    border-radius: 25px; /* Bordas bem arredondadas */
+    padding: 40px 30px;
+    width: 300px; /* Largura fixa do cartão */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Sombra suave */
+    transition: transform 0.3s ease;
+}
+
+.mvv-card:hover {
+    transform: translateY(-5px); /* Efeito de subir levemente ao passar o mouse */
+}
+
+/* Círculo Branco do Ícone */
+.icon-circle {
+    background-color: #FFFFFF;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* Faz ficar redondo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.icon-circle img {
+    width: 80px; /* Tamanho do ícone dentro do círculo */
+    height: auto;
+}
+
+/* Títulos (Missão, Visão...) */
+.mvv-card h3 {
+    font-family: 'Sansation', sans-serif; /* Usando a fonte que você pediu */
+    color: #5A2D0C; /* Marrom escuro / Café */
+    font-size: 28px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+/* Texto descritivo */
+.mvv-card p {
+    font-family: 'Red Hat Display', sans-serif;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* --- Responsividade para Celular --- */
+@media (max-width: 768px) {
+    .mvv-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .mvv-card {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+/* ================= SEÇÃO ESTRUTURA ================= */
+
+.estrutura-section {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #FDFBF7; /* Mesmo fundo creme */
+    font-family: 'Red Hat Display', sans-serif;
+}
+
+/* --- Coluna de Texto (Agora na Esquerda) --- */
+.estrutura-conteudo {
+    width: 50%; /* Metade da tela */
+    padding: 80px 100px; /* Mesmo espaçamento generoso */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Ajustes específicos do Título "Estrutura" */
+.estrutura-conteudo .titulo-destaque h3 {
+    font-family: 'Sansation', sans-serif;
+    color: #A04000; /* Cor ferrugem */
+    font-size: 32px; /* Um pouco maior, igual da imagem */
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+/* Reutiliza a linha verde, mas garante que apareça aqui */
+.estrutura-conteudo .linha-verde {
+    width: 100%;
+    height: 2px;
+    background-color: #88C5A0;
+    margin-bottom: 40px;
+}
+
+/* Texto do corpo */
+.estrutura-conteudo p {
+    color: #666;
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    text-align: justify;
+}
+
+/* --- Coluna de Imagem (Agora na Direita) --- */
+.estrutura-img {
+  padding: 50px;
+  margin: auto;
+    width: 50%;
+    position: relative;
+}
+
+.estrutura-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cobre todo o espaço */
+    display: block;
+}
+
+/* --- Responsividade (Celular) --- */
+@media (max-width: 900px) {
+    .estrutura-section {
+        flex-direction: column-reverse; /* Inverte: Imagem em cima, texto embaixo */
+    }
+
+    .estrutura-conteudo, .estrutura-img {
+        width: 100%;
+    }
+
+    .estrutura-img {
+        height: 300px; /* Altura da imagem no celular */
+    }
+
+    .estrutura-conteudo {
+        padding: 40px 25px;
+    }
+}
+/* ================= BANNER DESTAQUE (Faixa Escura) ================= */
+.banner-destaque {
+    width: 100%;
+    /* Use uma imagem de fundo escura ou uma cor sólida se preferir */
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('Imagens/fundo-banner-escuro.jpg');
+    background-color: #2e2e2e; /* Cor de fundo caso a imagem falhe */
+    background-size: cover;
+    background-position: center;
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center; /* Centraliza o bloco de texto */
+}
+
+.conteudo-banner {
+    max-width: 800px;
+    width: 100%;
+}
+
+.banner-destaque h2 {
+    font-family: 'Sansation', sans-serif;
+    color: #FFF;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 5px 0;
+}
+
+.linha-separadora-banner {
+    width: 100%; /* Linha ocupa toda a largura do container de texto */
+    height: 1px;
+    background-color: rgba(255,255,255,0.5); /* Branco meio transparente */
+    margin: 10px 0;
+}
+
+/* ================= SEÇÃO SUSTENTABILIDADE ================= */
+.sustentabilidade-section {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #FDFBF7; /* Fundo Creme */
+    font-family: 'Red Hat Display', sans-serif;
+    padding-bottom: 50px; /* Um espaço extra no final */
+}
+
+/* --- Coluna de Imagens (Esquerda) --- */
+.sustentabilidade-galeria {
+    width: 45%;
+    display: flex;
+    flex-direction: column; /* Empilha as fotos uma em cima da outra */
+    gap: 20px; /* Espaço entre as duas fotos */
+    padding: 50px 0 50px 50px; /* Padding ajustado para alinhar visualmente */
+}
+
+.sustentabilidade-galeria img {
+    width: 100%;
+    height: 280px; /* Altura fixa para cada foto ficar igual */
+    object-fit: cover;
+    display: block;
+    
+}
+
+/* --- Coluna de Texto (Direita) --- */
+.sustentabilidade-conteudo {
+    width: 55%;
+    padding: 50px 80px; /* Padding generoso */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Reaproveitando estilos de títulos e texto para manter padrão */
+.sustentabilidade-conteudo .titulo-destaque h3 {
+    font-family: 'Sansation', sans-serif;
+    color: #A04000;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.sustentabilidade-conteudo .linha-verde {
+    width: 100%;
+    height: 2px;
+    background-color: #88C5A0;
+    margin-bottom: 35px;
+}
+
+.sustentabilidade-conteudo p {
+    color: #666;
+    font-size: 18px;
+    line-height: 1.6; /* Texto um pouco mais compacto pois é longo */
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 900px) {
+    .banner-destaque h2 {
+        font-size: 28px; /* Fonte menor no banner mobile */
+    }
+
+    .sustentabilidade-section {
+        flex-direction: column;
+    }
+
+    .sustentabilidade-galeria {
+        width: 100%;
+        padding: 20px;
+        order: 2; /* Joga as imagens para baixo do texto no mobile, se preferir */
+    }
+
+    .sustentabilidade-conteudo {
+        width: 100%;
+        padding: 40px 20px;
+        order: 1;
+    }
+}
+
+/* ================= FOOTER (RODAPÉ) ================= */
+
+.footer-agrobeloni {
+    width: 100%;
+    /* Gradiente para criar o efeito diagonal (Verde claro / Verde escuro) */
+    background: linear-gradient(115deg, #00904C 55%, #007a40 55%);
+    color: white;
+    font-family: 'Red Hat Display', sans-serif;
+    padding-top: 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-conteudo {
+    display: flex;
+    justify-content: space-between; /* Espalha as colunas */
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto; /* Centraliza o conteúdo na tela */
+    padding: 0 40px 60px 40px;
+    flex-wrap: wrap; /* Permite quebrar linha no celular */
+}
+
+/* Estilo das Colunas */
+.footer-coluna {
+    flex: 1; /* Todas ocupam espaço igual se possível */
+    min-width: 200px;
+    margin-bottom: 30px;
+}
+
+.logo-coluna {
+    flex: 1.5; /* A coluna do logo é um pouco mais larga */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.footer-logo {
+    width: 180px; /* Tamanho do logo no rodapé */
+    height: auto;
+    /* Se seu logo não for branco, use este filtro para deixá-lo branco: */
+    filter: brightness(0) invert(1); 
+}
+
+/* Títulos das Colunas (MENU, ENDEREÇO...) */
+.footer-coluna h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Links do Menu */
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    position: relative;
+    transition: 0.3s;
+    border-bottom: 1px solid transparent; /* Para efeito de hover */
+}
+
+.footer-links a:hover {
+    border-bottom: 1px solid white; /* Sublinhado ao passar o mouse */
+}
+
+/* Texto de Endereço */
+.footer-coluna p {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 5px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Ícones Sociais */
+.social-coluna {
+    text-align: right; /* Alinha redes sociais à direita igual na imagem */
+}
+
+.footer-social-icons {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end; /* Ícones alinhados à direita */
+}
+
+.footer-social-icons img {
+    width: 35px;
+    height: 35px;
+    transition: transform 0.3s;
+    /* Garante que os ícones fiquem brancos */
+    filter: brightness(0) invert(1); 
+}
+
+.footer-social-icons img:hover {
+    transform: translateY(-5px);
+}
+
+/* Barra de Copyright */
+.footer-copyright {
+    background-color: rgba(0, 0, 0, 0.1); /* Um verde um pouco mais escuro/transparente */
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* --- Responsividade (Celular) --- */
+@media (max-width: 900px) {
+    .footer-agrobeloni {
+        background: #00904C; /* Remove o gradiente diagonal no celular para simplificar */
+    }
+
+    .footer-conteudo {
+        flex-direction: column;
+        padding: 40px 20px;
+    }
+
+    .footer-coluna {
+        width: 100%;
+        margin-bottom: 40px;
+        text-align: center; /* Centraliza tudo no celular */
+    }
+
+    .logo-coluna {
+        justify-content: center;
+    }
+
+    .social-coluna {
+        text-align: center;
+    }
+    
+    .footer-social-icons {
+        justify-content: center;
+    }
+}
