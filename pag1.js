@@ -40,9 +40,3 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-    const menuBtn = document.getElementById('menuHamburguer');
-const menuMobile = document.querySelector('.menu-mobile');
-
-menuBtn.addEventListener('click', () => {
-  menuMobile.classList.toggle('ativo');
-});
